@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CardsHub - Gift Cards Shop</title>
+</head>
+<body>
+
+<div id="gc-shop">
+  <style>
+    html,body{margin:0!important;padding:0!important;overflow:hidden!important;background:#f5b400!important;height:100%!important}
+    #navbar,#navbar-iframe,.Navbar,.navbar,iframe.blogger-iframe-colorize,header,.header,.header-outer,.header-inner,.tabs-outer,.sidebar,.sidebar-outer,footer,.footer,.footer-outer,.post-header,.post-footer,.post-title,.date-header,.post-share-buttons,.post-labels,.breadcrumbs,.blog-pager,.comments,#comments,.related-posts{display:none!important}
+    #gc-shop{--ink:#16120a;--gold:#f5b400;--gold-l:#ffd54a;position:fixed!important;top:0;left:0;right:0;bottom:0;width:100vw;height:100vh;height:100dvh;z-index:2147483647;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;font-family:Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:linear-gradient(160deg,#ffd54a 0%,#f5b400 55%,#e9a400 100%);line-height:1.5;box-sizing:border-box;visibility:visible!important;display:block!important;padding:max(18px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) max(26px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left))}
+    #gc-shop *{box-sizing:border-box}
+    #gc-shop .gc-wrap{max-width:720px;margin:0 auto}
+    #gc-shop .hidden{display:none!important}
+    #gc-shop .center{text-align:center}
+    #gc-shop button,#gc-shop input,#gc-shop a{font-family:inherit}
+    #gc-shop button:focus-visible,#gc-shop input:focus-visible,#gc-shop a:focus-visible{outline:3px solid #fff;outline-offset:2px}
+    #gc-shop .buy{background:linear-gradient(180deg,var(--gold-l),var(--gold));color:var(--ink);border:0;border-radius:12px;padding:10px 20px;font-size:14px;font-weight:800;cursor:pointer;text-align:center;text-decoration:none;display:inline-block}
+    #gc-shop .buy:hover{filter:brightness(1.06)}
+    #gc-shop .ghost{background:transparent;border:1.5px solid var(--gold);color:var(--gold-l);border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;display:inline-block}
+    #gc-shop .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+    #gc-shop .actions .buy,#gc-shop .actions .ghost{flex:1;padding:14px}
+    #gc-shop .hero{min-height:calc(100vh - 60px);min-height:calc(100dvh - 60px);display:flex;align-items:center;justify-content:center}
+    #gc-shop .hero-card{background:var(--ink);color:#fff;border-radius:24px;padding:32px 22px 26px;width:100%;box-shadow:0 24px 60px rgba(90,55,0,.4);position:relative;overflow:hidden}
+    #gc-shop .hero-card:before{content:"";position:absolute;right:-70px;top:-70px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(245,180,0,.35),transparent 70%)}
+    #gc-shop .mark{width:64px;height:64px;border-radius:18px;background:linear-gradient(145deg,var(--gold-l),var(--gold));color:var(--ink);font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:34px;line-height:64px;margin:0 auto 16px;position:relative}
+    #gc-shop .hero-card h1{font-family:"Playfair Display",Georgia,serif;font-size:34px;line-height:1.15;margin:0 0 8px;color:var(--gold-l);position:relative}
+    #gc-shop .tag{margin:0 auto 18px;color:#d9cca0;font-size:15px;max-width:420px;position:relative}
+    #gc-shop .points{list-style:none;margin:0 0 20px;padding:0;text-align:left;position:relative}
+    #gc-shop .points li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid #2e2818;font-size:14.5px;color:#f1e7c4}
+    #gc-shop .points li:first-child{border-top:0}
+    #gc-shop .points i{flex:0 0 22px;height:22px;border-radius:50%;background:var(--gold);color:var(--ink);font-style:normal;font-weight:800;font-size:13px;line-height:22px;text-align:center;margin-top:1px}
+    #gc-shop .keyarea{position:relative;text-align:left;border-top:1px solid #2e2818;padding-top:16px}
+    #gc-shop .box{background:var(--ink);color:#fff;border-radius:18px;padding:22px}
+    #gc-shop .box h2{font-family:"Playfair Display",Georgia,serif;margin:0 0 6px;color:var(--gold-l);font-size:26px}
+    #gc-shop .muted{color:#cdbf8a;font-size:14px;margin:4px 0}
+    #gc-shop label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px;color:var(--gold-l)}
+    #gc-shop .keyarea label{margin-top:0}
+    #gc-shop input[type=text],#gc-shop input[type=password]{width:100%;padding:13px;border:1.5px solid #3a3220;background:#241e10;color:#fff;border-radius:12px;font-size:16px}
+    #gc-shop .keywrap{position:relative}
+    #gc-shop .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:0;color:var(--gold-l);font-weight:700;font-size:13px;cursor:pointer;padding:8px}
+    #gc-shop .err{color:#ff8a80;font-size:13px;margin:8px 0 0;min-height:18px}
+    #gc-shop .shake{animation:gcshake .4s}
+    @keyframes gcshake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+    #gc-shop .brand{text-align:center;margin-bottom:18px}
+    #gc-shop .brand h2{font-family:"Playfair Display",Georgia,serif;font-size:32px;margin:0;letter-spacing:.3px;color:var(--ink)}
+    #gc-shop .brand p{margin:6px 0 0;font-size:14px;color:#4a3a00}
+    #gc-shop .tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;margin-bottom:8px}
+    #gc-shop .tab{flex:0 0 auto;border:0;background:rgba(22,18,10,.12);color:var(--ink);padding:10px 18px;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer}
+    #gc-shop .tab[aria-selected="true"]{background:var(--ink);color:var(--gold-l);box-shadow:0 6px 14px rgba(0,0,0,.25)}
+    #gc-shop .count{font-size:13px;color:#4a3a00;margin:0 0 10px 4px;font-weight:600}
+    #gc-shop .list{background:var(--ink);border-radius:16px;padding:8px}
+    #gc-shop .row{display:flex;align-items:center;gap:12px;padding:13px 12px;border-bottom:1px solid #2a2418;color:#fff}
+    #gc-shop .row:last-child{border-bottom:0}
+    #gc-shop .num{font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:var(--gold);min-width:58px}
+    #gc-shop .name{flex:1;font-size:15px;font-weight:500}
+    #gc-shop .price{font-weight:700;font-size:15px;color:var(--gold-l);white-space:nowrap}
+    #gc-shop .summary{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #3a3220;padding-bottom:14px;margin-bottom:14px}
+    #gc-shop .big{font-family:"Playfair Display",Georgia,serif;font-size:28px;font-weight:800;color:var(--gold-l)}
+    #gc-shop .qrbox{background:#fff;border-radius:14px;padding:10px;width:fit-content;margin:6px auto 10px}
+    #gc-shop .qrbox img{display:block}
+    #gc-shop .netline{text-align:center;font-size:13px;color:#cdbf8a;margin-bottom:10px}
+    #gc-shop .addr code{display:block;word-break:break-all;background:#241e10;border:1px dashed var(--gold);border-radius:10px;padding:12px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;text-align:center}
+    #gc-shop .addr code.flash{background:#3a3010;border-style:solid}
+    #gc-shop .copybig{width:100%;margin-top:10px;padding:14px;font-size:15px}
+    #gc-shop .copybig.done{background:#2e7d32;color:#fff}
+    #gc-shop .note{font-size:13px;color:#ffcf6b;margin:10px 0 0}
+    #gc-shop .ok{width:58px;height:58px;border-radius:50%;background:var(--gold);color:var(--ink);font-size:32px;font-weight:800;line-height:58px;margin:4px auto 12px}
+    #gc-shop .orderid{font-weight:800;letter-spacing:.5px;color:var(--gold-l)}
+    #gc-shop .seg{display:flex;gap:6px;background:#241e10;border-radius:12px;padding:4px}
+    #gc-shop .seg button{flex:1;border:0;background:transparent;color:#cdbf8a;padding:10px 6px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer}
+    #gc-shop .seg button.on{background:linear-gradient(180deg,var(--gold-l),var(--gold));color:var(--ink)}
+    #gc-loader{position:fixed;top:0;left:0;right:0;bottom:0;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(16,12,4,.92);opacity:0;pointer-events:none;transition:opacity .2s}
+    #gc-loader.on{opacity:1;pointer-events:all}
+    #gc-loader .ring{width:86px;height:86px;border-radius:50%;border:4px solid #3a3220;border-top-color:#ffd54a;border-right-color:#f5b400;animation:gcspin 1s linear infinite}
+    #gc-loader .ring-wrap{position:relative;width:86px;height:86px}
+    #gc-loader .ring-wrap b{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",Georgia,serif;font-size:34px;color:#ffd54a}
+    #gc-loader .lt{margin:22px 0 14px;color:#f1e7c4;font-weight:600;font-size:15px;letter-spacing:.3px}
+    #gc-loader .bar{width:180px;height:4px;border-radius:4px;background:#3a3220;overflow:hidden}
+    #gc-loader .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#f5b400,#ffd54a);border-radius:4px}
+    #gc-loader.on .bar i{animation:gcfill var(--ld,1s) ease-in-out forwards}
+    @keyframes gcspin{to{transform:rotate(360deg)}}
+    @keyframes gcfill{to{width:100%}}
+    @media (prefers-reduced-motion:reduce){#gc-loader .ring{animation-duration:3s}#gc-shop .shake{animation:none}}
+  </style>
+
+  <div class="gc-wrap">
+    <!-- View 1: Access Key View -->
+    <div id="v-key" class="hero">
+      <div class="hero-card center">
+        <div class="mark" id="w-mark">C</div>
+        <h1 id="w-brand">CardsHub</h1>
+        <p class="tag">Premium Google Play and Amazon gift cards, paid with USDT.</p>
+        <ul class="points">
+          <li><i></i><span>Google Play and Amazon cards in many values</span></li>
+          <li><i></i><span>Pay securely with USDT on the TRC20 network</span></li>
+          <li><i></i><span>Every order is verified and supported on WhatsApp</span></li>
+        </ul>
+        <div class="keyarea">
+          <label for="key">Access key</label>
+          <div class="keywrap">
+            <input type="password" id="key" placeholder="Enter your access key" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+            <button class="eye" id="eye" type="button">Show</button>
+          </div>
+          <p class="err" id="key-err"></p>
+          <div class="actions">
+            <button class="buy" id="key-go" type="button">Unlock Store</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View 2: Product List View -->
+    <div id="v-list" class="hidden">
+      <div class="brand">
+        <h2 id="s-brand">CardsHub</h2>
+        <p>Choose Google Play or Amazon, pick your card, and pay with USDT (TRC20).</p>
+      </div>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <p class="count" id="count"></p>
+      <div class="list" id="rows"></div>
+    </div>
+
+    <!-- View 3: Payment View -->
+    <div id="v-pay" class="box hidden">
+      <div class="summary">
+        <div>
+          <div id="p-name" style="font-weight:700;font-size:17px"></div>
+          <div class="muted" id="p-num"></div>
+        </div>
+        <div class="big" id="p-price"></div>
+      </div>
+      <label>Send payment to this USDT (TRC20) address</label>
+      <div class="qrbox"><img id="qr" alt="Payment QR code" width="170" height="170"></div>
+      <div class="netline">Network: <b>TRON (TRC20)</b> | Coin: <b>USDT</b></div>
+      <div class="addr"><code id="addr" role="button" tabindex="0" title="Tap to copy"></code></div>
+      <button class="buy copybig" id="copy" type="button">Copy address</button>
+      <p class="note" id="amt-note"></p>
+      <p class="note">Use the <b>TRC20</b> network only. Funds sent on any other network cannot be recovered.</p>
+      <label for="txid">Transaction ID (TXID)</label>
+      <input type="text" id="txid" placeholder="Paste your transaction ID after paying" autocomplete="off">
+      <p class="err" id="err"></p>
+      <div class="actions">
+        <button class="ghost" id="back" type="button">Back</button>
+        <button class="buy" id="confirm" type="button">Buy</button>
+      </div>
+    </div>
+
+    <!-- View 4: Order Completion & Delivery Details View -->
+    <div id="v-done" class="box hidden">
+      <div class="center">
+        <div class="ok" id="ok-mark">✓</div>
+        <h2>Order submitted</h2>
+        <p>Order ID: <span class="orderid" id="d-id"></span></p>
+        <p class="muted hidden" id="d-test">Test mode: this is a test order.</p>
+      </div>
+      <div id="deliver">
+        <p class="muted center" style="margin-top:10px">Your transaction will be verified. Tell us where to send your card.</p>
+        <label>Send my card to</label>
+        <div class="seg" id="seg">
+          <button type="button" class="on" data-m="Email">Email</button>
+          <button type="button" data-m="WhatsApp">WhatsApp</button>
+          <button type="button" data-m="Telegram">Telegram</button>
+        </div>
+        <label for="dv" id="dv-label">Your email address</label>
+        <input type="text" id="dv" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="name@example.com">
+        <p class="err" id="dv-err"></p>
+        <div class="actions">
+          <button class="buy" id="dv-go" type="button">Submit</button>
+        </div>
+      </div>
+      <div id="sent" class="hidden center">
+        <h2 style="margin-top:14px">Details received</h2>
+        <p class="muted" id="sent-line"></p>
+        <p class="muted">Tap the button below to send your order to our team. Your card is delivered after your payment is confirmed.</p>
+        <div class="actions">
+          <a class="buy" id="wa" target="_blank" rel="noopener">Send order on WhatsApp</a>
+        </div>
+        <div class="actions">
+          <button class="ghost" id="again" type="button">Place another order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loader overlay -->
+  <div id="gc-loader" aria-live="polite" role="status">
+    <div class="ring-wrap">
+      <div class="ring"></div>
+      <b id="ld-mark">C</b>
+    </div>
+    <div class="lt" id="ld-text">Loading</div>
+    <div class="bar"><i></i></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var BRAND="CardsHub";
+  var ACCESS_KEY="CARDsHub";
+  var WALLET="TWEGeCn4YNC4Pjn3W7sxHdov9cbMCDJyUV";
+  var CONTACT="923001234567";
+  var CURRENCY="USDT";
+  var TEST_MODE=true;
+  var TEST_TXID="d52733acb93006ea7245f2b4754504a43d98310286335a0f0ba6ce2b65908bb3";
+  var CARDS={
+    "Google Play":{min:44000,max:44999,markup:0,cards:{10:12,13:8,15:10,20:6,25:3,30:5,40:2,50:4}},
+    "Amazon":{min:50000,max:59999,markup:0,cards:{10:14,13:9,15:11,20:7,25:4,30:6,40:3,50:6}}
+  };
+  var AMP=String.fromCharCode(38);
+  var NL=String.fromCharCode(10);
+  
+  function $(id){return document.getElementById(id);}
+  var views=["v-key","v-list","v-pay","v-done"];
+  var order=null,method="Email",current=null,busy=false,active=Object.keys(CARDS)[0];
+
+  try{
+    var lk=document.createElement("link");
+    lk.rel="stylesheet";
+    lk.href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800"+AMP+"family=Inter:wght@400;500;600;700"+AMP+"display=swap";
+    document.head.appendChild(lk);
+  }catch(e){}
+
+  $("w-brand").textContent=BRAND;
+  $("s-brand").textContent=BRAND;
+  $("w-mark").textContent=BRAND.charAt(0).toUpperCase();
+  $("ld-mark").textContent=BRAND.charAt(0).toUpperCase();
+  $("ok-mark").textContent="\u2713";
+  Array.prototype.forEach.call(document.querySelectorAll("#gc-shop .points i"),function(t){t.textContent="\u2713";});
+
+  function show(id){
+    views.forEach(function(v){$(v).classList.toggle("hidden",v!==id);});
+    $("gc-shop").scrollTo({top:0});
+  }
+
+  function withLoader(ms,label,cb){
+    if(busy){return;}
+    busy=true;
+    var L=$("gc-loader");
+    $("ld-text").textContent=label||"Loading";
+    L.style.setProperty("--ld",ms+"ms");
+    L.classList.remove("on");
+    void L.offsetWidth;
+    L.classList.add("on");
+    setTimeout(function(){
+      cb();
+      L.classList.remove("on");
+      busy=false;
+    },ms);
+  }
+
+  function money(n){return n.toFixed(2).replace(/\.00$/,"")+" "+CURRENCY;}
+  function hash(str,base){
+    var h=base;
+    for(var i=0;i!==str.length;i++){h=(h*31+str.charCodeAt(i))%1000000007;}
+    return h;
+  }
+  function seeded(seed){
+    var s=seed%2147483646+1;
+    return function(){s=(s*16807)%2147483647;return (s-1)/2147483646;};
+  }
+
+  function items(cat){
+    var c=CARDS[cat],faces=[];
+    Object.keys(c.cards).forEach(function(v){
+      for(var i=0;i!==c.cards[v];i++){faces.push(Number(v));}
+    });
+    if(!faces.length){return [];}
+    var rnd=seeded(hash(cat,99));
+    for(var j=faces.length-1;j!==0;j--){
+      var r=Math.floor(rnd()*(j+1)),t=faces[j];
+      faces[j]=faces[r];
+      faces[r]=t;
+    }
+    return faces.map(function(face){
+      var price=Math.round(face*(1+c.markup/100)*100)/100;
+      return {name:cat+" Gift Card $"+face,price:price};
+    });
+  }
+
+  function mixedNumbers(cat,n){
+    var c=CARDS[cat],rnd=seeded(hash(cat,7)+7),used={},out=[];
+    while(out.length!==n){
+      var v=c.min+Math.floor(rnd()*(c.max-c.min+1));
+      if(!used[v]){used[v]=1;out.push(v);}
+    }
+    return out;
+  }
+
+  function renderTabs(){
+    var t=$("tabs");
+    t.innerHTML="";
+    Object.keys(CARDS).forEach(function(k){
+      var b=document.createElement("button");
+      b.className="tab";
+      b.type="button";
+      b.setAttribute("role","tab");
+      b.setAttribute("aria-selected",k===active);
+      b.textContent=k;
+      b.onclick=function(){
+        if(k===active){return;}
+        if(busy){return;}
+        withLoader(900,"Loading "+k,function(){active=k;renderTabs();renderRows();});
+      };
+      t.appendChild(b);
+    });
+  }
+
+  function renderRows(){
+    var box=$("rows");
+    box.innerHTML="";
+    var list=items(active),nums=mixedNumbers(active,list.length);
+    $("count").textContent=list.length+" cards available";
+    list.forEach(function(it,i){
+      var num=nums[i];
+      var r=document.createElement("div");
+      r.className="row";
+      var a=document.createElement("span");a.className="num";a.textContent=num;
+      var b=document.createElement("span");b.className="name";b.textContent=it.name;
+      var c=document.createElement("span");c.className="price";c.textContent=money(it.price);
+      var btn=document.createElement("button");
+      btn.className="buy";btn.type="button";btn.textContent="Buy";
+      btn.onclick=function(){startOrder({num:num,name:it.name,price:it.price});};
+      r.appendChild(a);r.appendChild(b);r.appendChild(c);r.appendChild(btn);
+      box.appendChild(r);
+    });
+  }
+
+  function startOrder(item){
+    current=item;
+    withLoader(1800,"Preparing your order",function(){
+      $("p-name").textContent=item.name;
+      $("p-num").textContent="List #"+item.num;
+      $("p-price").textContent=money(item.price);
+      $("addr").textContent=WALLET;
+      var q=$("qr");
+      q.style.display="block";
+      q.onerror=function(){q.style.display="none";};
+      q.src="https://api.qrserver.com/v1/create-qr-code/?size=170x170"+AMP+"margin=0"+AMP+"data="+encodeURIComponent(WALLET);
+      $("amt-note").textContent="Send exactly "+money(item.price)+" so your payment can be matched.";
+      $("txid").value="";
+      $("err").textContent="";
+      show("v-pay");
+    });
+  }
+
+  $("eye").onclick=function(){
+    var k=$("key"),hide=k.type==="password";
+    k.type=hide?"text":"password";
+    this.textContent=hide?"Hide":"Show";
+  };
+
+  function checkKey(){
+    var val=$("key").value.trim();
+    withLoader(1600,"Verifying key",function(){
+      if(val===ACCESS_KEY){
+        $("key-err").textContent="";
+        renderTabs();
+        renderRows();
+        show("v-list");
+      }else{
+        $("key-err").textContent="Incorrect access key. Please try again.";
+        var bx=$("v-key").firstElementChild;
+        bx.classList.remove("shake");
+        void bx.offsetWidth;
+        bx.classList.add("shake");
+      }
+    });
+  }
+
+  $("key-go").onclick=checkKey;
+  $(
